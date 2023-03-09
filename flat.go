@@ -170,7 +170,7 @@ func (dt *Flat) HTMLTemplate() string {
     }
     cite {
       display: block;
-      font-size: 0.925rem; 
+      font-size: 0.925rem;
     }
     cite:before {
       content: "\2014 \0020";
@@ -263,7 +263,6 @@ func (dt *Flat) HTMLTemplate() string {
       text-align: center;
       text-decoration: none;
       -webkit-text-size-adjust: none;
-      mso-hide: all;
     }
     /*Media Queries ------------------------------ */
     @media only screen and (max-width: 600px) {
@@ -311,7 +310,7 @@ func (dt *Flat) HTMLTemplate() string {
                       {{ .Email.Body.FreeMarkdown.ToHTML }}
                     {{ else }}
 
-                      {{ with .Email.Body.Dictionary }} 
+                      {{ with .Email.Body.Dictionary }}
                         {{ if gt (len .) 0 }}
                           <dl class="body-dictionary">
                             {{ range $entry := . }}
@@ -378,42 +377,6 @@ func (dt *Flat) HTMLTemplate() string {
                         {{ if gt (len .) 0 }}
                           {{ range $action := . }}
                             <p>{{ $action.Instructions }}</p>
-                            {{safe "<!--[if mso]>" }}
-                            {{ if $action.Button.Text }}
-                            <div style="margin: 30px auto">
-                              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" 
-                                xmlns:w="urn:schemas-microsoft-com:office:word" 
-                                href="{{ $action.Button.Link }}" 
-                                style="height:45px;v-text-anchor:middle;width:570px;background-color:{{ if $action.Button.Color }}{{ $action.Button.Color }}{{else}}#00948D{{ end }};"
-                                arcsize="0%" 
-                                {{ if $action.Button.Color }}strokecolor="{{ $action.Button.Color }}" fillcolor="{{ $action.Button.Color }}"{{ else }}strokecolor="#00948D" fillcolor="#00948D"{{ end }}
-                                >
-                                <w:anchorlock/>
-                                <center style="color: {{ if $action.Button.TextColor }}{{ $action.Button.TextColor }}{{else}}#FFFFFF{{ end }};font-size: 15px;text-align: center;font-family:sans-serif;font-weight:bold;">
-                                  {{ $action.Button.Text }}
-                                </center>
-                              </v:roundrect>
-                            </div>
-                            {{ end }}
-                            {{ if $action.InviteCode }}
-                            <div style="margin-top:30px;margin-bottom:30px">
-                              <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
-                                <tr>
-                                  <td align="center">
-                                    <table align="center" cellpadding="0" cellspacing="0" style="padding:0;text-align:center">
-                                      <tr>
-                                        <td style="display:inline-block;border-radius:3px;font-family:Consolas, monaco, monospace;font-size:28px;text-align:center;letter-spacing:8px;color:#555;background-color:#eee;padding:20px">
-                                          {{ $action.InviteCode }}
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </td>
-                                </tr>
-                              </table>
-                            </div>
-                            {{ end }} 
-                            {{safe "<![endif]-->" }}
-                            {{safe "<!--[if !mso]><!-- -->"}}
                             <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                               <tr>
                                 <td align="center">
@@ -430,13 +393,12 @@ func (dt *Flat) HTMLTemplate() string {
                                 </td>
                               </tr>
                             </table>
-                            {{safe "<![endif]-->" }}
                             {{ end }}
                         {{ end }}
                       {{ end }}
 
                     {{ end }}
-                    {{ with .Email.Body.Outros }} 
+                    {{ with .Email.Body.Outros }}
                         {{ if gt (len .) 0 }}
                           {{ range $line := . }}
                             <p>{{ $line }}</p>
@@ -451,7 +413,7 @@ func (dt *Flat) HTMLTemplate() string {
                     </p>
 
                     {{ if (eq .Email.Body.FreeMarkdown "") }}
-                      {{ with .Email.Body.Actions }} 
+                      {{ with .Email.Body.Actions }}
                         <table class="body-sub">
                           <tbody>
                               {{ range $action := . }}
@@ -536,21 +498,21 @@ func (dt *Flat) PlainTextTemplate() string {
       </table>
     {{ end }}
   {{ end }}
-  {{ with .Email.Body.Actions }} 
+  {{ with .Email.Body.Actions }}
     {{ range $action := . }}
       <p>
-        {{ $action.Instructions }} 
+        {{ $action.Instructions }}
         {{ if $action.InviteCode }}
           {{ $action.InviteCode }}
         {{ end }}
         {{ if $action.Button.Link }}
           {{ $action.Button.Link }}
         {{ end }}
-      </p> 
+      </p>
     {{ end }}
   {{ end }}
 {{ end }}
-{{ with .Email.Body.Outros }} 
+{{ with .Email.Body.Outros }}
   {{ range $line := . }}
     <p>{{ $line }}<p>
   {{ end }}

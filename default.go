@@ -257,7 +257,6 @@ func (dt *Default) HTMLTemplate() string {
       text-align: center;
       text-decoration: none;
       -webkit-text-size-adjust: none;
-      mso-hide: all;
     }
     /*Media Queries ------------------------------ */
     @media only screen and (max-width: 600px) {
